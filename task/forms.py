@@ -9,8 +9,7 @@ class UserLoginForm(AuthenticationForm):
     remember_me = forms.BooleanField(
         required=False,
         initial=True,
-        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-        help_text="Remember me",
+       
     )
 
 class UserRegistrationForm(UserCreationForm):
