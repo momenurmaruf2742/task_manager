@@ -7,7 +7,8 @@ from .forms import TaskForm
 from django.contrib.auth import logout
 from .models import*
 from django.shortcuts import get_object_or_404
-
+from django.utils import timezone
+from datetime import datetime
 
 
 def register(request):
@@ -74,8 +75,12 @@ def delete_task(request, task_id):
 
 @login_required(login_url='login')
 def task_list(request):
+    today = datetime.today().date()
+    print(today)
     tasks = Task.objects.filter(user=request.user)
-    return render(request, 'task_list.html', {'tasks': tasks})
+
+    context={'tasks': tasks, 'today': today}
+    return render(request, 'task_list.html', context)
 
 
 
